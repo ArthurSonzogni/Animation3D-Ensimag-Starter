@@ -78,8 +78,18 @@ void SkeletonDrawer::draw(float time, const glm::mat4& projection, const glm::ma
 
         glBindVertexArray(vao);
         
+            shaderProgram.setUniform("color",glm::vec4(1.0,1.0,1.0,1.0));
             glDrawArrays(
                  GL_LINES,      // mode
+                 0,            // offset
+                 nbPoints     // count
+             );
+
+            shaderProgram.setUniform("color",glm::vec4(1.0,0.0,0.0,1.0));
+            glPointSize(4.f);
+
+            glDrawArrays(
+                 GL_POINTS,      // mode
                  0,            // offset
                  nbPoints     // count
              );
