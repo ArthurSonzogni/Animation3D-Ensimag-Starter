@@ -12,6 +12,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <glm/gtc/type_ptr.hpp>
+#include <cstdlib>
 
 using namespace std;
 using namespace glm;
