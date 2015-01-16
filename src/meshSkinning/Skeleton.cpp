@@ -220,7 +220,10 @@ void SkeletonPart::getWeight(PointWeight& output, const glm::vec3& p, int& i, gl
 void Skeleton::getWeight(PointWeight& output, const glm::vec3& p)
 {
     int i = 0;
-    SkeletonPart::getWeight(output,p,i,glm::mat4(1.f));
+    glm::mat4 transformation = applyRestTransformation(glm::mat4(1.f));
+
+    for(auto child = children.begin(); child != children.end(); ++child)
+        (**child).getWeight(output,p,i,transformation);
 }
 
 int Skeleton::getFrameMirror(float time)
