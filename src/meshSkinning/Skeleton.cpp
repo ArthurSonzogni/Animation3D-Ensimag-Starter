@@ -146,7 +146,7 @@ glm::mat4 SkeletonPart::applyTransformation(int frame, glm::mat4 transformation)
     }
 
     transformation = transformation * glm::translate(glm::mat4(1.f),offset + tOffset);
-    transformation = transformation * zRot * xRot * yRot;
+    transformation = transformation * xRot * yRot * zRot;
     return transformation;
 }
 
