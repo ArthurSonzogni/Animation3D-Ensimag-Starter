@@ -15,7 +15,7 @@ class Camera
 		glm::vec3 target;
 	public:
 		Camera();
-		void update();
+		void update(float deltaTime);
 		glm::mat4 lookAt();
 		void setTarget(glm::vec3 target);
 		void setTheta(float theta);
