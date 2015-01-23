@@ -9,8 +9,8 @@
 #define THETA_MIN -170*2*M_PI/360
 #define R_MIN 0.1
 
-float Camera::THETA_MULTIPLIER = 1;
-float Camera::PHI_MULTIPLIER = 1;
+float Camera::THETA_MULTIPLIER = 0.01;
+float Camera::PHI_MULTIPLIER = 0.01;
 float Camera::ZOOM_MULTIPLIER = 1;
 float Camera::TRANSLATION_MULTIPLIER = 0.5;
 
@@ -28,10 +28,10 @@ void Camera::update(float deltaTime)
 	// Manage rotation
 	if(Input::isMouseHold(GLFW_MOUSE_BUTTON_LEFT))
 	{
-		this->theta -= Input::deltaY() * Camera::THETA_MULTIPLIER * deltaTime;
+		this->theta -= Input::deltaY() * Camera::THETA_MULTIPLIER;
 		if(this->theta > THETA_MAX) this->theta = THETA_MAX;
 		if(this->theta < THETA_MIN) this->theta = THETA_MIN;
-		this->phi += Input::deltaX() * Camera::PHI_MULTIPLIER * deltaTime;
+		this->phi += Input::deltaX() * Camera::PHI_MULTIPLIER;
 	}
 	// Manage translation
 	else if(Input::isMouseHold(GLFW_MOUSE_BUTTON_RIGHT))
