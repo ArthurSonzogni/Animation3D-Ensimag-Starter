@@ -133,7 +133,7 @@ glm::mat4 SkeletonPart::applyTransformation(int frame, glm::mat4 transformation)
     glm::vec3 tOffset(0.f);
     for(auto channel = motionData.begin(); channel != motionData.end(); ++channel)
     {
-       //if (frame < channel -> data.size())
+       if (frame < channel -> data.size())
        switch(channel -> channel)
        {
            case TX : tOffset += channel -> data[frame] * glm::vec3(1.f,0.f,0.f); break;
@@ -143,6 +143,8 @@ glm::mat4 SkeletonPart::applyTransformation(int frame, glm::mat4 transformation)
            case RY : yRot = glm::rotate(yRot, DEGTORAD * channel -> data[frame] , glm::vec3(0.f,1.f,0.f)); break;
            case RZ : zRot = glm::rotate(zRot, DEGTORAD * channel -> data[frame] , glm::vec3(0.f,0.f,1.f)); break;
        }
+       else
+           throw std::range_error("There is no frame here");
     }
 
     transformation = transformation * glm::translate(glm::mat4(1.f),offset + tOffset);
