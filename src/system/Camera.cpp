@@ -9,10 +9,10 @@
 #define THETA_MIN -170*2*M_PI/360
 #define R_MIN 0.1
 
-float Camera::THETA_MULTIPLIER = 50;
-float Camera::PHI_MULTIPLIER = 50;
-float Camera::ZOOM_MULTIPLIER = 10;
-float Camera::TRANSLATION_MULTIPLIER = 100;
+float Camera::THETA_MULTIPLIER = 1;
+float Camera::PHI_MULTIPLIER = 1;
+float Camera::ZOOM_MULTIPLIER = 1;
+float Camera::TRANSLATION_MULTIPLIER = 0.5;
 
 Camera::Camera()
 {
@@ -40,18 +40,18 @@ void Camera::update(float deltaTime)
 				-Input::deltaX()*cos(phi), 
 				-Input::deltaY(), 
 				Input::deltaX()*sin(phi)
-				)*deltaTime*Camera::TRANSLATION_MULTIPLIER;
+				)*Camera::TRANSLATION_MULTIPLIER;
 	}
 
 
 	// Manage zoom
 	if(Input::isKeyHold(GLFW_KEY_KP_ADD) || Input::isKeyHold(GLFW_KEY_LEFT_SHIFT))
 	{
-		this->r -= 100.0*Camera::ZOOM_MULTIPLIER*deltaTime;
+		this->r -= 100.0*Camera::ZOOM_MULTIPLIER * deltaTime;
 	}
 	if(Input::isKeyHold(GLFW_KEY_KP_SUBTRACT) || Input::isKeyHold(GLFW_KEY_LEFT_CONTROL))
 	{
-		this->r += 100.0*Camera::ZOOM_MULTIPLIER*deltaTime;
+		this->r += 100.0*Camera::ZOOM_MULTIPLIER * deltaTime;
 	}
 	if(this->r < R_MIN) this->r = R_MIN;
 }
