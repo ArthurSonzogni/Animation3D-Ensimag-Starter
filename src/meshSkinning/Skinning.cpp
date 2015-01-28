@@ -6,7 +6,7 @@
 #include <algorithm>
 
 
-Skinning::Skinning(const std::string& objFileName, const Skeleton& skeleton):
+Skinning::Skinning(const std::string& objFileName, Skeleton& skeleton):
     skeleton(skeleton),
     vertexShader("shader/skinning.vert",GL_VERTEX_SHADER),
     fragmentShader("shader/skinning.frag",GL_FRAGMENT_SHADER),

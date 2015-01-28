@@ -29,12 +29,12 @@ class Skinning
     };
 
     public:
-        Skinning(const std::string& objFileName, const Skeleton& skeleton);
+        Skinning(const std::string& objFileName, Skeleton& skeleton);
         void draw(double time, const glm::mat4& projection, const glm::mat4& view);
 
     private:
         // data
-        Skeleton skeleton;
+        Skeleton& skeleton;
 
         // VBO/VAO/ibo
         GLuint vao,vbo,ibo;
