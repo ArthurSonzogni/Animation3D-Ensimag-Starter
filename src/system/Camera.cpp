@@ -11,8 +11,8 @@
 
 float Camera::THETA_MULTIPLIER = 0.01;
 float Camera::PHI_MULTIPLIER = 0.01;
-float Camera::ZOOM_MULTIPLIER = 0.1;
-float Camera::TRANSLATION_MULTIPLIER = 0.1;
+float Camera::ZOOM_MULTIPLIER = 1;
+float Camera::TRANSLATION_MULTIPLIER = 0.5;
 
 Camera::Camera()
 {
@@ -22,7 +22,7 @@ Camera::Camera()
 	this->target = glm::vec3(0.0,0.0,0.0);
 }
 
-void Camera::update()
+void Camera::update(float deltaTime)
 {
     if (Input::isKeyHold(GLFW_KEY_TAB)) return;
 	// Manage rotation
@@ -37,21 +37,21 @@ void Camera::update()
 	else if(Input::isMouseHold(GLFW_MOUSE_BUTTON_RIGHT))
 	{
 		this->target += glm::vec3(
-				-Input::deltaX()*cos(phi)*Camera::TRANSLATION_MULTIPLIER, 
-				-Input::deltaY()*Camera::TRANSLATION_MULTIPLIER, 
-				Input::deltaX()*sin(phi)*Camera::TRANSLATION_MULTIPLIER
-				);
+				-Input::deltaX()*cos(phi), 
+				-Input::deltaY(), 
+				Input::deltaX()*sin(phi)
+				)*Camera::TRANSLATION_MULTIPLIER;
 	}
 
 
 	// Manage zoom
 	if(Input::isKeyHold(GLFW_KEY_KP_ADD) || Input::isKeyHold(GLFW_KEY_LEFT_SHIFT))
 	{
-		this->r -= Camera::ZOOM_MULTIPLIER;
+		this->r -= 100.0*Camera::ZOOM_MULTIPLIER * deltaTime;
 	}
 	if(Input::isKeyHold(GLFW_KEY_KP_SUBTRACT) || Input::isKeyHold(GLFW_KEY_LEFT_CONTROL))
 	{
-		this->r += Camera::ZOOM_MULTIPLIER;
+		this->r += 100.0*Camera::ZOOM_MULTIPLIER * deltaTime;
 	}
 	if(this->r < R_MIN) this->r = R_MIN;
 }

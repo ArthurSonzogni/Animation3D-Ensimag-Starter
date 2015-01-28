@@ -20,4 +20,4 @@ void main(void)
     float specular = 0.6*pow(max(0.0,-dot(r,l)),4.0);
 
     color = vec4(1.0) *  ( ambient + diffus + specular );
-};
+}

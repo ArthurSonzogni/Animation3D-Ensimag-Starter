@@ -35,4 +35,4 @@ void main(void)
     fNormal = vec3(view * vec4(normal,0.0));
 
     gl_Position = projection * fPosition;
-};
+}

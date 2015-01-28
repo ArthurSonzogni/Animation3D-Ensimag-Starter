@@ -42,7 +42,7 @@ void Application3D::loop()
 		exit();
 	}
 	
-	camera->update();
+	camera->update(getFrameDeltaTime());
 	view = camera->lookAt();
 
     // clear
