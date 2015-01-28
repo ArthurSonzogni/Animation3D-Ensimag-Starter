@@ -57,6 +57,7 @@ class SkeletonPart
         glm::vec3 offset;
         std::vector<MotionData> motionData;
         std::vector<SkeletonPart*> children;
+
 };
 
 class Skeleton : public SkeletonPart

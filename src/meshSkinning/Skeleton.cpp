@@ -122,6 +122,7 @@ SkeletonPart::~SkeletonPart()
     {
         delete *child;
     }
+    children.clear();
 }
 
 
