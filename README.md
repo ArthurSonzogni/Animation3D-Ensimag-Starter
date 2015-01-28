@@ -2,8 +2,8 @@
 Animation3D Ensimag Starter
 ===========================
 
-A ready to use C++11 CMake skeleton using GLFW, Glew and glm.
-Shader and Application class are included too.
+Skeleton for the Animation3D Ensimag project.
+
 
 git submodules :
 ================
